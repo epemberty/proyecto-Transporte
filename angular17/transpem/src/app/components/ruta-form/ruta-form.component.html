@@ -1,0 +1,90 @@
+<h2>
+  @if(ruta){
+    Editar
+  }@else {
+    Nueva
+  } Ruta
+</h2>
+<div class="row row-cols-3 justify-content-center">
+@if (form) {
+  <form [formGroup]="form" (ngSubmit)="save()">
+  <div class="form-group">
+    <label for="nombre">Nombre:</label>
+    <input
+      id="nombre"
+      type="text"
+      formControlName="nombre"
+      class="form-control"
+      required
+    />
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="mina">Mina:</label>
+    <select
+      id="mina"
+      formControlName="mina"
+      class="form-control"
+      required>
+      <option *ngFor="let mina of minas" [value]="mina.id">
+        {{ mina.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="destino">Destino:</label>
+    <select
+      id="destino"
+      formControlName="destino"
+      class="form-control"
+      required>
+      <option *ngFor="let destino of destinos" [value]="destino.id">
+        {{ destino.nombre }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="contrato">Contrato:</label>
+    <select
+      id="contrato"
+      formControlName="contrato"
+      class="form-control"
+      required>
+      <option *ngFor="let contrato of contratos" [value]="contrato.id">
+        {{ contrato.nombre }}
+      </option>
+    </select>
+  </div>
+
+<div class="form-group mb-3">
+  <label for="valorTonelada">Valor por tonelada:</label>
+  <input
+    id="valorTonelada"
+    type="number"
+    formControlName="valorTonelada"
+    class="form-control"
+    [class.is-invalid]="form.get('valorTonelada')?.invalid && form.get('valorTonelada')?.touched"
+    required
+  />
+  <div *ngIf="form.get('valorTonelada')?.invalid && form.get('valorTonelada')?.touched" class="invalid-feedback">
+    El valor por tonelada es obligatorio y debe ser un número válido.
+  </div>
+</div>
+
+
+  <div class="form-group">
+    <label for="estado">Estado:</label>
+    <select id="estado" formControlName="estado" class="form-control" required>
+      <option [value]="true">Activo</option>
+      <option [value]="false">Inactivo</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    {{ ruta ? 'Actualizar' : 'Crear' }}
+  </button>
+</form>
+}
+</div>

@@ -1,0 +1,27 @@
+<h2 class="mb-5">MINAS</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newMina">Nueva Mina</button>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NOMBRE</th>
+      <th>ESTADO</th>
+      <th class="text-end">ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let mina of minas; trackBy: trackById">
+      <td>{{ mina.id }}</td>
+      <td>{{ mina.nombre }}</td>
+      <td>{{ mina.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td class="text-end">
+        <button class="btn btn-primary me-2" [routerLink]="['/mina', mina.id]">Editar</button>
+        <button class="btn btn-danger" (click)="borrarMina(mina.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

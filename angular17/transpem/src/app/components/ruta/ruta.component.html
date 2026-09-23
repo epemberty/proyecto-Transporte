@@ -1,0 +1,35 @@
+<h2 class="mb-5">RUTAS</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newRuta">Nueva Ruta</button>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NOMBRE</th>
+      <th>MINA</th>
+      <th>DESTINO</th>
+      <th>CONTRATO</th>
+      <th>VALOR TONELADA</th>
+      <th>ESTADO</th>
+      <th class="text-end">ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ruta of rutas; trackBy: trackById">
+      <td>{{ ruta.id }}</td>
+      <td>{{ ruta.nombre }}</td>
+      <td>{{ ruta.mina?.nombre }}</td>
+      <td>{{ ruta.destino?.nombre }}</td>
+      <td>{{ ruta.contrato?.nombre }}</td>
+      <td>{{ ruta.valorTonelada }}</td>
+      <td>{{ ruta.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td class="text-end">
+        <button class="btn btn-primary me-2" [routerLink]="['/ruta', ruta.id]">Editar</button>
+        <button class="btn btn-danger" (click)="borrarRuta(ruta.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

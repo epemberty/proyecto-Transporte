@@ -1,0 +1,70 @@
+<h2 class="mb-5">
+  @if(vehiculo){
+    Editar}
+    @else{
+    Nuevo
+    } Vehiculo
+</h2>
+<div class="row row-cols-3 justify-content-center">
+  @if (form){
+    <form [formGroup]="form" (ngSubmit)="save()">
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Placa</label>
+      <input type="text" class="form-control" formControlName="placa" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Marca</label>
+      <input type="text" class="form-control" formControlName="marca" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Modelo</label>
+      <input type="number" class="form-control" formControlName="modelo" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Vencimiento Tecnomecánica</label>
+      <input type="date" class="form-control" formControlName="vencimientoTecnomecanica" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Vencimiento SOAT</label>
+      <input type="date" class="form-control" formControlName="vencimientoSoat" />
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <label class="form-label">Vencimiento Póliza</label>
+      <input type="date" class="form-control" formControlName="vencimientoPoliza" />
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Estado</label>
+    <select class="form-select" formControlName="estado">
+      <option [ngValue]="true">Activo</option>
+      <option [ngValue]="false">Inactivo</option>
+    </select>
+  </div>
+
+  <div class="text-end">
+        <button type="button" class="btn btn-light" routerLink="/">
+          Cancelar
+        </button>
+         <button class="btn btn-primary ms-2">
+          @if(vehiculo){
+            Actualizar
+          }@else {
+            Crear
+          } Vehiculo
+        </button>
+          <button type="button" class="btn btn-secondary ms-2" routerLink="/home">
+          Ir a Home
+         </button>
+  </div>
+</form>
+  }
+  </div>

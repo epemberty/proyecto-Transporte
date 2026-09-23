@@ -1,0 +1,27 @@
+<h2 class="mb-5">CONTRATOS</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newContrato">Nuevo Contrato</button>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>NOMBRE</th>
+      <th>ESTADO</th>
+      <th class="text-end">ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let contrato of contratos; trackBy: trackById">
+      <td>{{ contrato.id }}</td>
+      <td>{{ contrato.nombre }}</td>
+      <td>{{ contrato.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td class="text-end">
+        <button class="btn btn-primary me-2" [routerLink]="['/contrato', contrato.id]">Editar</button>
+        <button class="btn btn-danger" (click)="borrarContrato(contrato.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

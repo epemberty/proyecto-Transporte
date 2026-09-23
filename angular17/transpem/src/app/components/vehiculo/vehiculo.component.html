@@ -1,0 +1,37 @@
+<h2 class="mb-5">VEHÍCULOS</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newVehiculo">Nuevo Vehículo</button>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>PLACA</th>
+      <th>MARCA</th>
+      <th>MODELO</th>
+      <th>TECNO</th>
+      <th>SOAT</th>
+      <th>PÓLIZA</th>
+      <th>ESTADO</th>
+      <th class="text-end">ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vehiculo of vehiculos; trackBy: trackById">
+      <td>{{ vehiculo.id }}</td>
+      <td>{{ vehiculo.placa }}</td>
+      <td>{{ vehiculo.marca }}</td>
+      <td>{{ vehiculo.modelo }}</td>
+      <td>{{ vehiculo.vencimientoTecnomecanica }}</td>
+      <td>{{ vehiculo.vencimientoSoat }}</td>
+      <td>{{ vehiculo.vencimientoPoliza }}</td>
+      <td>{{ vehiculo.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td class="text-end">
+        <button class="btn btn-primary me-2" [routerLink]="['/vehiculo', vehiculo.id]">Editar</button>
+        <button class="btn btn-danger" (click)="borrarVehiculo(vehiculo.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
