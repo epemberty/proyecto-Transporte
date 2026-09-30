@@ -1,0 +1,210 @@
+<h2>
+  {{ tiquete ? 'Editar' : 'Nuevo' }} Tiquete
+</h2>
+
+<div class="row row-cols-3 justify-content-center">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+
+    <!-- Nombre -->
+    <div class="form-group mb-3">
+      <label for="nombre">Nombre:</label>
+      <input
+        id="nombre"
+        type="text"
+        formControlName="nombre"
+        class="form-control"
+        [class.is-invalid]="form.get('nombre')?.invalid && form.get('nombre')?.touched"
+        required
+      />
+      <div *ngIf="form.get('nombre')?.invalid && form.get('nombre')?.touched" class="invalid-feedback">
+        El nombre es obligatorio.
+      </div>
+    </div>
+
+    <!-- Fecha -->
+    <div class="form-group mb-3">
+      <label for="fecha">Fecha:</label>
+      <input
+        id="fecha"
+        type="date"
+        formControlName="fecha"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Conductor -->
+    <div class="form-group mb-3">
+      <label for="conductor">Conductor:</label>
+      <select id="conductor" formControlName="conductor" class="form-control" required>
+        <option *ngFor="let conductor of conductores" [value]="conductor.id">
+          {{ conductor.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Vehículo -->
+    <div class="form-group mb-3">
+      <label for="vehiculo">Vehículo:</label>
+      <select id="vehiculo" formControlName="vehiculo" class="form-control" required>
+        <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.id">
+          {{ vehiculo.placa }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Ruta -->
+    <div class="form-group mb-3">
+      <label for="ruta">Ruta:</label>
+      <select id="ruta" formControlName="ruta" class="form-control" required>
+        <option *ngFor="let ruta of rutas" [value]="ruta.id">
+          {{ ruta.nombre }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Peso en kilos -->
+    <div class="form-group mb-3">
+      <label for="pesoKilos">Peso en kilos:</label>
+      <input
+        id="pesoKilos"
+        type="number"
+        formControlName="pesoKilos"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Valor anticipo -->
+    <div class="form-group mb-3">
+      <label for="anticipo">Valor anticipo:</label>
+      <input
+        id="anticipo"
+        type="number"
+        formControlName="anticipo"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Combustible -->
+    <div class="form-group mb-3">
+      <label for="combustible">Valor combustible:</label>
+      <input
+        id="combustible"
+        type="number"
+        formControlName="combustible"
+        class="form-control"
+        required
+      />
+    </div>
+
+    <!-- Encarpe -->
+    <div class="form-group mb-3">
+      <label for="encarpe">Valor encarpe:</label>
+      <input
+        id="encarpe"
+        type="number"
+        formControlName="encarpe"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="form-group mb-3">
+        <label for="reteica">Reteica:</label>
+        <input
+          id="reteica"
+          type="number"
+          formControlName="reteica"
+          class="form-control bg-secondary-subtle"
+          required
+        />
+      </div>
+
+    <!-- Campos calculados -->
+    <div class="border rounded p-3 mb-4 bg-light">
+      <h5 class="mb-3">Valores calculados automáticamente</h5>
+
+      <div class="form-group mb-3" title="Calculado a partir del peso en kilos">
+        <label for="pesoToneladas">Peso en toneladas:</label>
+        <input
+          id="pesoToneladas"
+          type="number"
+          formControlName="pesoToneladas"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+
+      <div class="form-group mb-3" title="Calculado con base en la ruta y el peso">
+        <label for="valorViaje">Valor del viaje:</label>
+        <input
+          id="valorViaje"
+          type="number"
+          formControlName="valorViaje"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+
+      <div class="form-group mb-3" title="1% del valor del viaje">
+        <label for="retencion">Retención:</label>
+        <input
+          id="retencion"
+          type="number"
+          formControlName="retencion"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+
+
+      <div class="form-group mb-3" title="1% del valor del viaje">
+        <label for="administracion">Administración:</label>
+        <input
+          id="administracion"
+          type="number"
+          formControlName="administracion"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+
+      <div class="form-group mb-3" title="Valor viaje - anticipo - combustible">
+        <label for="saldoBruto">Saldo bruto:</label>
+        <input
+          id="saldoBruto"
+          type="number"
+          formControlName="saldoBruto"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+
+      <div class="form-group mb-3" title="Saldo bruto - encarpe - retención - administración">
+        <label for="saldoNeto">Saldo neto:</label>
+        <input
+          id="saldoNeto"
+          type="number"
+          formControlName="saldoNeto"
+          class="form-control bg-secondary-subtle"
+          readonly
+        />
+      </div>
+    </div>
+
+    <!-- Estado -->
+    <div class="form-group mb-3">
+      <label for="estado">Estado:</label>
+      <select id="estado" formControlName="estado" class="form-control" required>
+        <option [value]="true">Activo</option>
+        <option [value]="false">Inactivo</option>
+      </select>
+    </div>
+
+    <!-- Botón -->
+    <button type="submit" class="btn btn-primary">
+      {{ tiquete ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</div>

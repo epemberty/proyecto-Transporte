@@ -1,0 +1,55 @@
+<h2 class="mb-5">TIQUETES</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newTiquete">Nueva Tiquete</button>
+</div>
+
+  <table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Fecha</th>
+      <th>Nombre</th>
+      <th>Conductor</th>
+      <th>Vehículo</th>
+      <th>Ruta</th>
+      <th>Peso (kg)</th>
+      <th>Valor Viaje</th>
+      <th>Combustible</th>
+      <th>Encarpe</th>
+      <th>Anticipo</th>
+      <th>Saldo Bruto</th>
+      <th>Administracion</th>
+      <th>Reteica</th>
+      <th>Retencion</th>
+      <th>Saldo Neto</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tiquete of tiquetes">
+      <td>{{ tiquete.numeroTiquete }}</td>
+      <td>{{ tiquete.fecha | date:'yyyy-MM-dd' }}</td>
+      <td>{{ tiquete.nombre }}</td>
+      <td>{{ tiquete.conductor?.id }}</td>
+      <td>{{ tiquete.vehiculo?.id }}</td>
+      <td>{{ tiquete.ruta?.id }}</td>
+      <td>{{ tiquete.pesoKilos }}</td>
+      <td>{{ tiquete.valorViaje | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.combustible| currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.encarpe | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.anticipo | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.saldoBruto | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.administracion | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.reteica| currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.retencion | currency:'USD':'symbol':'1.0-0' }}</td>
+      <td>{{ tiquete.saldoNeto | currency:'USD':'symbol':'1.0-0' }}</td>
+
+
+      <td>
+        <button class="btn btn-sm btn-primary me-2" [routerLink]="['/tiquete', tiquete.id]">Editar</button>
+        <button class="btn btn-sm btn-danger" (click)="eliminar(tiquete.id)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

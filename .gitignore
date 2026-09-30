@@ -1,0 +1,50 @@
+# ==========================================
+# Archivos de Sistema y Entorno Local
+# ==========================================
+.DS_Store
+Thumbs.db
+*.log
+.history/
+
+# ==========================================
+# Configuración de IDEs (VS Code, IntelliJ, Eclipse)
+# ==========================================
+.vscode/
+.idea/
+*.iws
+*.iml
+*.ipr
+.project
+.classpath
+.settings/
+.factorypath
+.springBeans
+.sts4-cache
+.apt_generated
+/nbproject/private/
+/nbbuild/
+
+# ==========================================
+# FRONTEND (Angular / Node)
+# ==========================================
+**/node_modules/
+**/dist/
+**/tmp/
+**/out-tsc/
+**/.angular/cache/
+**/coverage/
+npm-debug.log*
+yarn-error.log*
+
+# ==========================================
+# BACKEND (Java / Maven)
+# ==========================================
+**/target/
+.mvn/wrapper/maven-wrapper.jar
+
+# ==========================================
+# DOCKER / DATOS LOCALES
+# ==========================================
+# Evita subir los datos persistentes de la BD si los guardas localmente
+**/mysql_data/
+**/*.db

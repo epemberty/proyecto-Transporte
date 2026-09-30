@@ -1,0 +1,44 @@
+y<h2 class="mb-5">
+  @if(destino){
+    Editar}
+    @else{
+    Nuevo
+    } Destino
+</h2>
+
+<div class="row row-cols-3 justify-content-center">
+  @if (form){
+    <form [formGroup]="form" (ngSubmit)="save()">
+ <div clas = "mb-3">
+        <label for="nombre">Nombre</label>
+        <input id= "nombre" type="text" placeholder="Nombre" class="form-control"
+        formControlName="nombre">
+
+      </div>
+
+ <div clas = "mb-5">
+       <label for="estado">Estado:</label>
+    <select id="estado" formControlName="estado" class="form-control" required>
+      <option [value]="true">Activo</option>
+      <option [value]="false">Inactivo</option>
+    </select>
+
+        </div>
+
+         <div class="text-end">
+        <button type="button" class="btn btn-light" routerLink="/">
+          Cancelar
+        </button>
+         <button class="btn btn-primary ms-2">
+          @if(destino){
+            Actualizar
+          }@else {
+            Crear
+          } Destino
+        </button>
+</div>
+
+</form>
+
+  }
+</div>

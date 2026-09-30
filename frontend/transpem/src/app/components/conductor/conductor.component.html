@@ -1,0 +1,31 @@
+<h2 class="mb-5">CONDUCTORES</h2>
+
+<div class="text-end mb-3">
+  <button class="btn btn-primary" routerLink="/newConductor">Nuevo Conductor</button>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>CÉDULA</th>
+      <th>NOMBRE</th>
+      <th>APELLIDO</th>
+      <th>ESTADO</th>
+      <th class="text-end">ACCIONES</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let conductor of conductores; trackBy: trackById">
+      <td>{{ conductor.id }}</td>
+      <td>{{ conductor.cedula }}</td>
+      <td>{{ conductor.nombre }}</td>
+      <td>{{ conductor.apellido }}</td>
+      <td>{{ conductor.estado ? 'Activo' : 'Inactivo' }}</td>
+      <td class="text-end">
+        <button class="btn btn-primary me-2" [routerLink]="['/conductor', conductor.id]">Editar</button>
+        <button class="btn btn-danger" (click)="borrarConductor(conductor.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
