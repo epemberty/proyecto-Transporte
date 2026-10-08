@@ -151,44 +151,6 @@ public class TiqueteController {
         }
         return ResponseEntity.badRequest().build();
     }
-
-
-    @GetMapping("/reportes")
-    public ResponseEntity<?> generarReporte(
-            @RequestParam(name = "fechaInicio", required = false) java.sql.Date fechaInicio,
-            @RequestParam(name = "fechaFin", required = false) java.sql.Date fechaFin,
-            @RequestParam(name = "idMina", required = false) Long idMina,
-            @RequestParam(name = "idRuta", required = false) Long idRuta,
-            @RequestParam(name = "idConductor", required = false) Long idConductor,
-            @RequestParam(name = "valorMin", required = false) Long valorMin,
-            @RequestParam(name = "valorMax", required = false) Long valorMax) {
-        
-        List<TiqueteDTO> reportesDTO = tiqueteService.reporteTiquetes(fechaInicio, fechaFin, idMina, idRuta, idConductor, valorMin, valorMax)
-                .stream()
-                .map(tiquete -> TiqueteDTO.builder()
-                        .id(tiquete.getId())
-                        .numeroTiquete(tiquete.getNumeroTiquete())
-                        .fecha(tiquete.getFecha())
-                        .nombre(tiquete.getNombre())
-                        .conductor(tiquete.getConductor())
-                        .vehiculo(tiquete.getVehiculo())
-                        .ruta(tiquete.getRuta())
-                        .pesoKilos(tiquete.getPesoKilos())
-                        .pesoToneladas(tiquete.getPesoToneladas())
-                        .valorViaje(tiquete.getValorViaje())
-                        .anticipo(tiquete.getAnticipo())
-                        .saldoBruto(tiquete.getSaldoBruto())
-                        .encarpe(tiquete.getEncarpe())
-                        .combustible(tiquete.getCombustible())
-                        .retencion(tiquete.getRetencion())
-                        .reteica(tiquete.getReteica())
-                        .administracion(tiquete.getAdministracion())
-                        .saldoNeto(tiquete.getSaldoNeto())
-                        .estado(tiquete.getEstado())
-                        .build())
-                .toList();
-        
-        return ResponseEntity.ok(reportesDTO);
-    }
+   
 
 }

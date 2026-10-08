@@ -1,18 +1,25 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule, RouterLink } from '@angular/router';
 import { TiqueteReporteService, TiqueteReporteDTO } from '../../services/tiquete-reporte.service';
 
 @Component({
   selector: 'app-tiquete-reporte',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NgFor, RouterLink],
   templateUrl: './tiquete-reporte.component.html',
   styleUrls: ['./tiquete-reporte.component.scss']
 })
 export default class TiqueteReporteComponent implements OnInit {
   private fb = inject(FormBuilder);
   private reporteService = inject(TiqueteReporteService);
+  public router = inject(Router);
+
+ irAlHome(event: Event): void {
+    event.preventDefault(); // Evita que se dispare el submit del formulario por accidente
+    this.router.navigate(['/home']);
+  }
 
   reporteForm!: FormGroup;
   tiquetes: TiqueteReporteDTO[] = [];

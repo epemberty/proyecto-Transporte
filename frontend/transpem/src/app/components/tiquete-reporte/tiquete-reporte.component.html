@@ -34,74 +34,83 @@
           <label class="form-label">Valor V. Máximo ($)</label>
           <input type="number" class="form-control" formControlName="valorMax" placeholder="Máximo">
         </div>
-        
-        <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+
+        <div class="col-12 d-flex justify-content-end gap-2 mt-4 position-relative"
+          style="z-index: 9999; pointer-events: auto;">
           <button type="button" class="btn btn-secondary" (click)="limpiarFiltros()">Limpiar Filtros</button>
           <button type="submit" class="btn btn-primary" [disabled]="cargando">
             <span *ngIf="cargando" class="spinner-border spinner-border-sm me-2"></span>
             Generar Reporte
           </button>
-        </div>
-      </form>
-    </div>
-  </div>
 
-  <!-- Tarjeta de Resultados (Tabla) -->
-  <div class="card shadow-sm">
-    <div class="card-header bg-success text-white">
-      <h4 class="mb-0">Resultados ({{ tiquetes.length }} Tiquetes)</h4>
+        </div>
+
+      </form>
+        </div>
+      <div class="col-12 d-flex justify-content-end gap-2 mt-4 position-relative"
+        style="z-index: 9999; pointer-events: auto;">
+
+        <button type="button" class="btn btn-secondary" (click)="irAlHome($event)">Menu Principal</button>
+      </div>
     </div>
-    <div class="card-body p-0">
-      <div class="table-responsive">
-        <table class="table table-hover table-striped mb-0">
-          <thead class="table-dark">
-            <tr>
-              <th># Tiquete</th>
-              <th>Fecha</th>
-              <th>Conductor</th>
-              <th>Ruta (Mina-Destino)</th>
-              <th>Vehículo</th>
-              <th>Peso (Ton)</th>
-              <th>Valor Viaje</th>
-              <th>Saldo Neto</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let t of tiquetes">
-              <td>{{ t.numeroTiquete }}</td>
-              <td>{{ t.fecha }}</td>
-              <td>
-                <span *ngIf="t.conductor">{{ t.conductor.nombre }} {{ t.conductor.apellido }}</span>
-              </td>
-              <td>
-                <span *ngIf="t.ruta && t.ruta.mina && t.ruta.destino">
-                  {{ t.ruta.mina.nombre }} - {{ t.ruta.destino.nombre }}
-                </span>
-              </td>
-              <td><span *ngIf="t.vehiculo">{{ t.vehiculo.placa }}</span></td>
-              <td>{{ t.pesoToneladas }}</td>
-              <td>{{ t.valorViaje | currency }}</td>
-              <td class="fw-bold text-success">{{ t.saldoNeto | currency }}</td>
-            </tr>
-            <tr *ngIf="tiquetes.length === 0 && !cargando">
-              <td colspan="8" class="text-center py-4 text-muted">Ajusta los filtros arriba y haz clic en "Generar Reporte".</td>
-            </tr>
-            <tr *ngIf="cargando">
-              <td colspan="8" class="text-center py-4">
-                <div class="spinner-border text-primary" role="status"></div>
-                <p class="mt-2 text-muted">Cargando datos desde el servidor...</p>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot *ngIf="tiquetes.length > 0" class="table-group-divider fw-bold table-light">
-            <tr>
-              <td colspan="6" class="text-end">Total Acumulado:</td>
-              <td>{{ totalValorViaje | currency }}</td>
-              <td class="text-success">{{ totalSaldoNeto | currency }}</td>
-            </tr>
-          </tfoot>
-        </table>
+
+    <!-- Tarjeta de Resultados (Tabla) -->
+    <div class="card shadow-sm">
+      <div class="card-header bg-success text-white">
+        <h4 class="mb-0">Resultados ({{ tiquetes.length }} Tiquetes)</h4>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th># Tiquete</th>
+                <th>Fecha</th>
+                <th>Conductor</th>
+                <th>Ruta (Mina-Destino)</th>
+                <th>Vehículo</th>
+                <th>Peso (Ton)</th>
+                <th>Valor Viaje</th>
+                <th>Saldo Neto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let t of tiquetes">
+                <td>{{ t.numeroTiquete }}</td>
+                <td>{{ t.fecha }}</td>
+                <td>
+                  <span *ngIf="t.conductor">{{ t.conductor.nombre }} {{ t.conductor.apellido }}</span>
+                </td>
+                <td>
+                  <span *ngIf="t.ruta && t.ruta.mina && t.ruta.destino">
+                    {{ t.ruta.mina.nombre }} - {{ t.ruta.destino.nombre }}
+                  </span>
+                </td>
+                <td><span *ngIf="t.vehiculo">{{ t.vehiculo.placa }}</span></td>
+                <td>{{ t.pesoToneladas }}</td>
+                <td>{{ t.valorViaje | currency }}</td>
+                <td class="fw-bold text-success">{{ t.saldoNeto | currency }}</td>
+              </tr>
+              <tr *ngIf="tiquetes.length === 0 && !cargando">
+                <td colspan="8" class="text-center py-4 text-muted">Ajusta los filtros arriba y haz clic en "Generar
+                  Reporte".</td>
+              </tr>
+              <tr *ngIf="cargando">
+                <td colspan="8" class="text-center py-4">
+                  <div class="spinner-border text-primary" role="status"></div>
+                  <p class="mt-2 text-muted">Cargando datos desde el servidor...</p>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot *ngIf="tiquetes.length > 0" class="table-group-divider fw-bold table-light">
+              <tr>
+                <td colspan="6" class="text-end">Total Acumulado:</td>
+                <td>{{ totalValorViaje | currency }}</td>
+                <td class="text-success">{{ totalSaldoNeto | currency }}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -30,13 +30,14 @@ export interface TiqueteReporteDTO {
 export class TiqueteReporteService {
   private http = inject(HttpClient);
   // Endpoint directo a tu backend local de Spring Boot
-  private apiUrl = 'http://localhost:8080/api/v1/tiquete/reportes';
+  private apiUrl = 'http://localhost:8080/api/v1/reportes/tiquetes';
 
   obtenerReportes(filtros: any): Observable<TiqueteReporteDTO[]> {
     let params = new HttpParams();
     
     if (filtros.fechaInicio) params = params.set('fechaInicio', filtros.fechaInicio);
     if (filtros.fechaFin) params = params.set('fechaFin', filtros.fechaFin);
+    if (filtros.idMina) params = params.set('idMina', filtros.idMina);
     if (filtros.idRuta) params = params.set('idRuta', filtros.idRuta);
     if (filtros.idConductor) params = params.set('idConductor', filtros.idConductor);
     if (filtros.valorMin) params = params.set('valorMin', filtros.valorMin);
