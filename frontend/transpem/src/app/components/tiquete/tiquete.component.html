@@ -15,6 +15,7 @@
       <th>Vehículo</th>
       <th>Ruta</th>
       <th>Peso (kg)</th>
+      <th>Valor Comision</th>
       <th>Valor Viaje</th>
       <th>Combustible</th>
       <th>Encarpe</th>
@@ -36,6 +37,7 @@
       <td>{{ tiquete.vehiculo?.id }}</td>
       <td>{{ tiquete.ruta?.id }}</td>
       <td>{{ tiquete.pesoKilos }}</td>
+      <td>{{ tiquete.valorComision | currency:'USD':'symbol':'1.0-0' }}</td>
       <td>{{ tiquete.valorViaje | currency:'USD':'symbol':'1.0-0' }}</td>
       <td>{{ tiquete.combustible| currency:'USD':'symbol':'1.0-0' }}</td>
       <td>{{ tiquete.encarpe | currency:'USD':'symbol':'1.0-0' }}</td>

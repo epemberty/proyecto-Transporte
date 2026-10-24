@@ -12,6 +12,7 @@ export interface TiqueteInterface {
   ruta: RutaInterface | null;
   pesoKilos: number;
   pesoToneladas: number;
+  valorComision: number;
   valorViaje: number;
   anticipo: number;
   saldoBruto: number;

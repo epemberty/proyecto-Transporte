@@ -33,4 +33,35 @@ public interface TiqueteRepository extends JpaRepository<Tiquete, Long> {
             @org.springframework.data.repository.query.Param("valorMax") Long valorMax
     );
 
+
+@org.springframework.data.jpa.repository.Query(""" 
+    SELECT new transpem.DTO.LiquidacionConductorDTO(
+    c.id,
+    c.cedula,
+    CONCAT(c.nombre, ' ', c.apellido),
+            COUNT(t.id),
+            COALESCE(SUM(t.pesoToneladas),0L),
+            COALESCE(SUM(t.valorViaje), 0L),
+            COALESCE(SUM(t.valorComision), 0L)
+)
+            FROM Tiquete t
+            JOIN t.conductor c
+            WHERE (:fechaInicio IS NULL OR t.fecha >= :fechaInicio)
+            AND (:fechaFin IS NULL OR t.fecha <= :fechaFin)
+            AND (:idConductor IS NULL OR c.id = :idConductor)
+            GROUP BY c.id, c.cedula, c.nombre, c.apellido
+            ORDER BY c.nombre ASC   
+    """)
+    
+    List<transpem.DTO.LiquidacionConductorDTO>
+    liquidarConductores(
+        @org.springframework.data.repository.query.Param 
+        ("fechaInicio") java.sql.Date fechaInicio,
+
+        @org.springframework.data.repository.query.Param
+        ("fechaFin") java.sql.Date fechaFin,
+
+        @org.springframework.data.repository.query.Param 
+        ("idConductor") Long idConductor
+    );
 }

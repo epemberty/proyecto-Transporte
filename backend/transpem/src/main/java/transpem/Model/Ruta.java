@@ -36,8 +36,11 @@ public class Ruta {
     @JoinColumn(name = "id_contrato", nullable = false)
     private Contrato contrato;
 
-    @Column(name = "v_tonelada")
+    @Column(name = "valor_tonelada")
     private Double valorTonelada;
+
+    @Column(name = "valor_comision")
+    private Long valorComision;
 
     @OneToMany(mappedBy = "ruta", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
     @JsonIgnore

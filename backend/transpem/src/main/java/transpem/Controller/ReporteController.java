@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import transpem.DTO.TiqueteReporteDTO;
 import transpem.Service.ReporteService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin 
 @RestController
@@ -37,5 +40,24 @@ public class ReporteController {
                     valorMin,
                     valorMax);
                     return ResponseEntity.ok(listaReportes);
-            }}
+            }
+            
+            @GetMapping("/liquidacion-conductores")
+            public
+            ResponseEntity<List<transpem.DTO.LiquidacionConductorDTO>>
+            liquidarConductores(
+                @RequestParam(name= "fechaInicio", required = false) Date fechaInicio,
+                @RequestParam(name= "fechaFin", required =false) Date fechaFin,
+                @RequestParam(name= "idConductor", required = false) Long idConductor)
+                {
+                    List<transpem.DTO.LiquidacionConductorDTO> resultado =
+                    reporteService.liquidarConductores(fechaInicio, fechaFin, idConductor);
+                    return ResponseEntity.ok(resultado);
+
+                }
+            
+
+
+        }
+
     

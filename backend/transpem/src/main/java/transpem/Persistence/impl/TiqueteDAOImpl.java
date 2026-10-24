@@ -38,4 +38,16 @@ public class TiqueteDAOImpl implements ITiqueteDAO {
     public List<Tiquete> reporteTiquetes(java.sql.Date fechaInicio, java.sql.Date fechaFin, Long idMina, Long idRuta, Long idConductor, Long valorMin, Long valorMax) {
         return tiqueteRepository.findReporteTiquetes(fechaInicio, fechaFin, idMina, idRuta, idConductor, valorMin, valorMax);
     }
+
+    @Override 
+    public
+    List<transpem.DTO.LiquidacionConductorDTO>
+    liquidarConductores(
+        java.sql.Date fechaInicio,
+        java.sql.Date fechaFin,
+        Long idConductor) {
+            return tiqueteRepository.liquidarConductores(
+                fechaInicio, fechaFin, idConductor);
+        }
+   
 }

@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { LiquidacionConductor } from '../interfaces/liquidacion-conductor.interface';
+
 
 export interface TiqueteReporteDTO {
   id: number;
@@ -45,4 +47,20 @@ export class TiqueteReporteService {
 
     return this.http.get<TiqueteReporteDTO[]>(this.apiUrl, { params });
   }
+
+  private apiLiquidacion = 'http://localhost:8080/api/v1/reportes/liquidacion-conductores';
+
+  obtenerLiquidacion(filtros: {fechaInicio?: string;
+    fechaFin?: string; idConductor?: number}):
+    Observable<LiquidacionConductor[]>{
+      let params = new HttpParams();
+      if (filtros.fechaInicio) params =
+      params.set('fechaInicio', filtros.fechaInicio);
+      if (filtros.fechaFin) params= params.set('fechaFin', filtros.fechaFin);
+      if (filtros.idConductor) params = params.set('idConductor', String(filtros.idConductor));
+    
+      return this.http.get<LiquidacionConductor[]>
+      (this.apiLiquidacion, {params});
+    
+    }
 }

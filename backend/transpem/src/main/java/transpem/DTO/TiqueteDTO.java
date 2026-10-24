@@ -24,6 +24,7 @@ public class TiqueteDTO {
     private Long pesoKilos;
     private Long pesoToneladas;
     private Long valorViaje;
+    private Long valorComision;
     private Long anticipo;
     private Long saldoBruto;
     private Long encarpe;

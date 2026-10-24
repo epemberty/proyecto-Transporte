@@ -33,8 +33,9 @@ export default class TiqueteFormComponent implements OnInit {
   conductores: ConductorInterface[] = [];
 
   ngOnInit(): void {
-    this.cargarRelaciones();
     this.inicializarFormulario();
+    this.cargarRelaciones();
+    
 
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -53,6 +54,7 @@ export default class TiqueteFormComponent implements OnInit {
             anticipo: tiquete.anticipo,
             encarpe: tiquete.encarpe,
             combustible: tiquete.combustible,
+            valorComision: tiquete.valorComision,
             reteica: tiquete.reteica,
             estado: tiquete.estado
           });
@@ -74,6 +76,7 @@ export default class TiqueteFormComponent implements OnInit {
       ruta: [null, Validators.required],
       pesoKilos: [0, Validators.required],
       pesoToneladas: [0],
+      valorComision: [0, Validators.required],
       valorViaje: [0],
       anticipo: [0, Validators.required],
       saldoBruto: [0],
@@ -190,6 +193,7 @@ const valorTonelada = rutaSeleccionada.valorTonelada;
       ruta: rutaSeleccionada,
       pesoKilos: val.pesoKilos,
       pesoToneladas: val.pesoToneladas,
+      valorComision: val.valorComision,
       valorViaje: val.valorViaje,
       anticipo: val.anticipo,
       saldoBruto: val.saldoBruto,

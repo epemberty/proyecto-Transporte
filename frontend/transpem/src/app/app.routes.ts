@@ -43,7 +43,12 @@ export const routes: Routes = [
   { path: 'tiquete/:id', loadComponent: () => import('./components/tiquete-form/tiquete-form.component') },
 
   // Reporte de Tiquetes
+  //{ path: 'reportes/tiquetes', loadComponent: () => import('./components/tiquete-reporte/tiquete-reporte.component') },
+
+  { path: 'reportes', loadComponent: () => import('./components/reportes-menu/reportes-menu.component') },
   { path: 'reportes/tiquetes', loadComponent: () => import('./components/tiquete-reporte/tiquete-reporte.component') },
+  { path: 'reportes/liquidacion', loadComponent: () => import('./components/liquidacion-conductores/liquidacion-conductores.component') },
+
 
   // Redirección final
   { path: '**', redirectTo: '/home', pathMatch: 'full' }

@@ -18,5 +18,11 @@ public interface ReporteService {
         Long valorMax
     );
 
+    List<transpem.DTO.LiquidacionConductorDTO>
+    liquidarConductores(
+        java.sql.Date fechaInicio,
+        java.sql.Date fechaFin,
+        Long idConductor);
+
 
 }

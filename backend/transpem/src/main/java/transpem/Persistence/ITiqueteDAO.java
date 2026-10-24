@@ -14,4 +14,11 @@ public interface ITiqueteDAO {
 
     void deleteById(Long id);
     List<Tiquete> reporteTiquetes(java.sql.Date fechaInicio, java.sql.Date fechaFin, Long idMina, Long idRuta, Long idConductor, Long valorMin, Long valorMax);
+
+    List<transpem.DTO.LiquidacionConductorDTO>
+    liquidarConductores(
+        java.sql.Date fechaInicio,
+        java.sql.Date fechaFin, 
+        Long idConductor);
+
 }

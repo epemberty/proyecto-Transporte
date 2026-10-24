@@ -1,0 +1,35 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">Módulo de Informes y Reportes</h2>
+      <p class="text-muted mb-0">Selecciona el tipo de informe o liquidación</p>
+    </div>
+    <a routerLink="/home" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+      <i class="bi bi-house"></i>
+      <span>Menú Principal</span>
+    </a>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col" *ngFor="let rep of reportes">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body p-4 d-flex flex-column justify-content-between">
+          <div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="bg-{{ rep.color }} bg-opacity-10 text-{{ rep.color }} p-3 rounded-3 d-inline-flex">
+                <i class="bi {{ rep.icono }} fs-3"></i>
+              </div>
+              <span class="badge bg-{{ rep.color }} text-white">{{ rep.badge }}</span>
+            </div>
+            <h4 class="fw-bold">{{ rep.titulo }}</h4>
+            <p class="text-muted">{{ rep.descripcion }}</p>
+          </div>
+          <a [routerLink]="rep.path" class="btn btn-{{ rep.color }} w-100 mt-3 d-flex align-items-center justify-content-center gap-2">
+            <span>Abrir Reporte</span>
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

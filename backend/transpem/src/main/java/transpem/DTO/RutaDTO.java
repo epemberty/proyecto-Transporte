@@ -18,6 +18,7 @@ public class RutaDTO {
     private Mina mina;
     private Destino destino;
     private Contrato contrato;
+    private Long valorComision;
     private Double valorTonelada;
     private Boolean estado;
 

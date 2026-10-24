@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import transpem.DTO.RutaDTO;
-import transpem.DTO.RutaDTO;
 import transpem.Model.Ruta;
 import transpem.Service.RutaService;
 
@@ -36,6 +35,7 @@ public class RutaController {
                     .mina(ruta.getMina())
                     .destino(ruta.getDestino())
                     .contrato(ruta.getContrato())
+                    .valorComision(ruta.getValorComision())
                     .valorTonelada(ruta.getValorTonelada())
                     .estado(ruta.getEstado())
                     .build();
@@ -54,6 +54,7 @@ public class RutaController {
                         .mina(ruta.getMina())
                         .destino(ruta.getDestino())
                         .contrato(ruta.getContrato())
+                        .valorComision(ruta.getValorComision())
                         .valorTonelada(ruta.getValorTonelada())
                         .estado(ruta.getEstado())
                         .build())
@@ -72,6 +73,7 @@ public class RutaController {
                         .mina(rutaDTO.getMina())
                         .destino(rutaDTO.getDestino())
                         .contrato(rutaDTO.getContrato())
+                        .valorComision(rutaDTO.getValorComision())
                         .valorTonelada(rutaDTO.getValorTonelada())
                 .estado(rutaDTO.getEstado())
                 .build());
@@ -88,6 +90,7 @@ public class RutaController {
             ruta.setMina(rutaDTO.getMina());
             ruta.setDestino(rutaDTO.getDestino());
             ruta.setContrato(rutaDTO.getContrato());
+            ruta.setValorComision(rutaDTO.getValorComision());
             ruta.setValorTonelada(rutaDTO.getValorTonelada());
             ruta.setEstado(rutaDTO.getEstado());
             rutaService.save(ruta);

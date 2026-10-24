@@ -44,6 +44,7 @@ export default class RutaFormComponent implements OnInit {
     mina: [null, Validators.required],
     destino: [null, Validators.required],
     contrato: [null, Validators.required],
+    valorComision: [0, Validators.required],
     valorTonelada: [0, Validators.required],
     estado: [true, [Validators.required]],
   });
@@ -64,6 +65,7 @@ export default class RutaFormComponent implements OnInit {
             mina: [ruta.mina?.id, [Validators.required]],
             destino: [ruta.destino?.id, [Validators.required]],
             contrato: [ruta.contrato?.id, [Validators.required]],
+            valorComision: [ruta.valorComision, [Validators.required]],
             valorTonelada: [ruta.valorTonelada, [Validators.required]],
             estado: [Boolean(ruta.estado), [Validators.required]],
   });
@@ -77,6 +79,7 @@ export default class RutaFormComponent implements OnInit {
     mina: [null, Validators.required],
     destino: [null, Validators.required],
     contrato: [null, Validators.required],
+    valorComision: [0, Validators.required],
     valorTonelada: [0, Validators.required],
     estado: [true, [Validators.required]],
   });
@@ -127,6 +130,7 @@ export default class RutaFormComponent implements OnInit {
       mina: minaSeleccionada!, // La mina seleccionada ahora será el objeto correcto
       destino: destinoSeleccionado!, // El destino seleccionado ahora será el objeto correcto
       contrato: contratoSeleccionado!, // El contrato seleccionado ahora será el objeto correcto
+      valorComision: Number(rutaFormData.valorComision),
       valorTonelada: Number(rutaFormData.valorTonelada),
       estado: rutaFormData.estado,
 

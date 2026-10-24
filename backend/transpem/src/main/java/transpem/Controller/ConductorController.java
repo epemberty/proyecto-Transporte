@@ -14,7 +14,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin (origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/v1/conductor")
 

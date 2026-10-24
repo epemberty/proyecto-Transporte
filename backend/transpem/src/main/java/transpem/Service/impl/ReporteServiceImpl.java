@@ -61,5 +61,17 @@ public class ReporteServiceImpl implements ReporteService {
         
     }
 
+    @Override 
+    public
+    List<transpem.DTO.LiquidacionConductorDTO>
+    liquidarConductores(
+        java.sql.Date fechaInicio,
+        java.sql.Date fechaFin,
+        Long idConductor){
+            return
+            iTiqueteDAO.liquidarConductores
+            (fechaInicio, fechaFin, idConductor);
+        }
+    
 
 }

@@ -8,6 +8,7 @@ export interface RutaInterface {
   mina: MinaInterface | null;
   destino: DestinoInterface | null;
   contrato: ContratoInterface | null;
+  valorComision: number;
   valorTonelada: number;
   estado: boolean;
 }

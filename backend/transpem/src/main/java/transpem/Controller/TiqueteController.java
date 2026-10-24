@@ -39,6 +39,7 @@ public class TiqueteController {
                     .ruta(tiquete.getRuta())
                     .pesoKilos(tiquete.getPesoKilos())
                     .pesoToneladas(tiquete.getPesoToneladas())
+                    .valorComision(tiquete.getValorComision())
                     .valorViaje(tiquete.getValorViaje())
                     .anticipo(tiquete.getAnticipo())
                     .saldoBruto(tiquete.getSaldoBruto())
@@ -69,6 +70,7 @@ public class TiqueteController {
                         .ruta(tiquete.getRuta())
                         .pesoKilos(tiquete.getPesoKilos())
                         .pesoToneladas(tiquete.getPesoToneladas())
+                        .valorComision(tiquete.getValorComision())
                         .valorViaje(tiquete.getValorViaje())
                         .anticipo(tiquete.getAnticipo())
                         .saldoBruto(tiquete.getSaldoBruto())
@@ -99,6 +101,7 @@ public class TiqueteController {
                         .ruta(tiqueteDTO.getRuta())
                         .pesoKilos(tiqueteDTO.getPesoKilos())
                         .pesoToneladas(tiqueteDTO.getPesoToneladas())
+                        .valorComision(tiqueteDTO.getValorComision())
                         .valorViaje(tiqueteDTO.getValorViaje())
                         .anticipo(tiqueteDTO.getAnticipo())
                         .saldoBruto(tiqueteDTO.getSaldoBruto())
@@ -127,6 +130,7 @@ public class TiqueteController {
             tiquete.setRuta(tiqueteDTO.getRuta());
             tiquete.setPesoKilos(tiqueteDTO.getPesoKilos());
             tiquete.setPesoToneladas(tiqueteDTO.getPesoToneladas());
+            tiquete.setValorComision(tiqueteDTO.getValorComision());
             tiquete.setValorViaje(tiqueteDTO.getValorViaje());
             tiquete.setAnticipo(tiqueteDTO.getAnticipo());
             tiquete.setSaldoBruto(tiqueteDTO.getSaldoBruto());

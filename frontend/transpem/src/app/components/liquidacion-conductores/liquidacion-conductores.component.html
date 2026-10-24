@@ -1,0 +1,105 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-0">Liquidación de Comisiones</h2>
+      <p class="text-muted mb-0">Resumen de viajes y comisiones por conductor</p>
+    </div>
+    <div class="d-flex gap-2">
+      <a routerLink="/reportes" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+        <i class="bi bi-arrow-left"></i>
+        <span>Volver a Reportes</span>
+      </a>
+      <a routerLink="/home" class="btn btn-outline-primary d-flex align-items-center gap-2">
+        <i class="bi bi-house"></i>
+        <span>Menú Principal</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body p-4">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Fecha Inicio</label>
+          <input type="date" class="form-control" [(ngModel)]="filtros.fechaInicio" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Fecha Fin</label>
+          <input type="date" class="form-control" [(ngModel)]="filtros.fechaFin" />
+        </div>
+        <div class="col-md-4">
+          <label class="form-label fw-semibold">Conductor</label>
+          <select class="form-select" [(ngModel)]="filtros.idConductor">
+            <option [ngValue]="undefined">Todos los conductores</option>
+            <option *ngFor="let c of conductores" [ngValue]="c.id">
+              {{ c.nombre }} {{ c.apellido }} (C.C. {{ c.cedula }})
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end gap-2 mt-4">
+        <button class="btn btn-outline-secondary" (click)="limpiarFiltros()">Limpiar</button>
+        <button class="btn btn-primary px-4" (click)="consultar()" [disabled]="cargando">
+          <i class="bi bi-search me-1"></i>
+          {{ cargando ? 'Calculando...' : 'Consultar' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Resumen de Totales -->
+  <div class="row g-3 mb-4" *ngIf="liquidaciones.length > 0">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm bg-light p-3">
+        <div class="text-muted small">Total Viajes Realizados</div>
+        <div class="h3 fw-bold mb-0">{{ totalViajes }}</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm bg-success text-white p-3">
+        <div class="text-white-50 small">Gran Total Comisiones a Pagar</div>
+        <div class="h3 fw-bold mb-0">{{ totalComisiones | currency:'COP':'symbol-narrow':'1.0-0' }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Resultados -->
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>Conductor</th>
+              <th>Cédula</th>
+              <th class="text-center">N° Viajes</th>
+              <th class="text-end">Toneladas</th>
+              <th class="text-end">Total Flete</th>
+              <th class="text-end">Total Comisión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of liquidaciones">
+              <td class="fw-bold">{{ item.nombreConductor }}</td>
+              <td>{{ item.cedula }}</td>
+              <td class="text-center">
+                <span class="badge bg-secondary rounded-pill px-3 py-2">{{ item.totalViajes }}</span>
+              </td>
+              <td class="text-end">{{ item.totalToneladas | number }} Ton</td>
+              <td class="text-end">{{ item.totalFlete | currency:'COP':'symbol-narrow':'1.0-0' }}</td>
+              <td class="text-end text-success fw-bold fs-5">
+                {{ item.totalComision | currency:'COP':'symbol-narrow':'1.0-0' }}
+              </td>
+            </tr>
+            <tr *ngIf="liquidaciones.length === 0 && !cargando">
+              <td colspan="6" class="text-center py-4 text-muted">
+                No se encontraron viajes registrados para el criterio seleccionado.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

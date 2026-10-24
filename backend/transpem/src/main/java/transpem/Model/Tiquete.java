@@ -47,39 +47,42 @@ public class Tiquete {
     @JoinColumn(name = "id_ruta", nullable = false)
     private Ruta ruta;
 
-    @Column(name = "p_kilos")
+    @Column(name = "peso_kilos")
     private Long pesoKilos;
 
-    @Column(name = "p_ton")
+    @Column(name = "peso_toneladas")
     private Long pesoToneladas;
 
-    @Column(name = "v_viaje")
+    @Column(name = "valor_viaje")
     private Long valorViaje;
+
+    @Column(name = "valor_comision")
+    private Long valorComision;
 
     @Column(name = "anticipo")
     private Long anticipo;
 
-    @Column(name = "s_bruto")
+    @Column(name = "saldo_bruto")
     private Long saldoBruto;
 
-    @Column(name = "v_encarpe")
+    @Column(name = "valor_encarpe")
     private Long encarpe;
 
-    @Column(name = "v_combustible")
+    @Column(name = "valor_combustible")
     private Long combustible;
 
-    @Column(name = "v_retencion")
+    @Column(name = "valor_retencion")
     private Long retencion;
 
-    @Column(name = "reteica")
+    @Column(name = "valor_reteica")
     private Long reteica;
 
 
 
-    @Column(name = "v_administracion")
+    @Column(name = "valor_administracion")
     private Long administracion;
 
-    @Column(name = "s_neto")
+    @Column(name = "saldo_neto")
     private Long saldoNeto;
 
     @Column(name = "estado")

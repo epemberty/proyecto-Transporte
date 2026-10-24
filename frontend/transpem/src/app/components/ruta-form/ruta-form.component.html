@@ -59,6 +59,21 @@
   </div>
 
 <div class="form-group mb-3">
+  <label for="valorComision">Valor de la comisión:</label>
+  <input
+    id="valorComision"
+    type="number"
+    formControlName="valorComision"
+    class="form-control"
+    [class.is-invalid]="form.get('valorComision')?.invalid && form.get('valorComision')?.touched"
+    required
+  />
+  <div *ngIf="form.get('valorComision')?.invalid && form.get('valorComision')?.touched" class="invalid-feedback">
+    El valor de la comisión es obligatorio y debe ser un número válido.
+  </div>
+</div>
+
+<div class="form-group mb-3">
   <label for="valorTonelada">Valor por tonelada:</label>
   <input
     id="valorTonelada"
